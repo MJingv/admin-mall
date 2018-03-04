@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-Zconst webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
     entry: './src/app.jsx',
@@ -44,7 +44,7 @@ module.exports = {
                             limit: 8192,//大于8k单独成文件
                             name: 'resource/[name].[ext]'
                         }
-                    }
+                    }, 'file-loader'
                 ]
             },
             {
@@ -56,7 +56,7 @@ module.exports = {
                             limit: 8192,//大于8k单独成文件
                             name: 'resource/[name].[ext]'
                         }
-                    }
+                    }, 'file-loader'
                 ]
             }
         ]
@@ -67,7 +67,8 @@ module.exports = {
             template: './src/index.html'
         }),
         //独立css文件
-        new ExtractTextPlugin("css/[index].css"),
+
+        new ExtractTextPlugin("css/[name].css"),
         //提出公共模块
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
@@ -75,5 +76,8 @@ module.exports = {
         }),
 
 
-    ]
+    ],
+    debServer: {
+        contentBase: './dist',
+    }
 }
