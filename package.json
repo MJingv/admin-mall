@@ -7,6 +7,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "node_modules/.bin/webpack-dev-server",
+        "build": "node_modules/.bin/webpack",
         "dist": "WEBPACK_ENV=online node_modules/.bin/webpack -p",
         "dist_win": "set WEBPACK_ENV=online&& node_modules/.bin/webpack -p"
     },
