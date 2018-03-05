@@ -1,6 +1,24 @@
+<<<<<<< HEAD
 .idea/
 bower_components
 node_modules
 npm-debug.log
 .DS_Store
 dist
+=======
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+
+.idea/
+bower_components
+node_modules
+dev
+npm-debug.log
+rev
+dist/
+.DS_Store
+
+>>>>>>> 220531264d1637a344b00ae04eaac04590d18ea3

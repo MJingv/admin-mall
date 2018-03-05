@@ -3,7 +3,11 @@
     "version": "1.0.0",
     "main": "index.js",
     "repository": "git@gitee.com:https://github.com/MJingv/admin-mall",
+<<<<<<< HEAD
     "author": "Rosen <6256199542qq.com>",
+=======
+    "author": "Jehol <625619954@qq.com>",
+>>>>>>> 220531264d1637a344b00ae04eaac04590d18ea3
     "license": "MIT",
     "scripts": {
         "dev": "node_modules/.bin/webpack-dev-server",
@@ -18,7 +22,10 @@
         "css-loader": "0.28.8",
         "extract-text-webpack-plugin": "3.0.2",
         "file-loader": "1.1.6",
+<<<<<<< HEAD
         "html-loader": "^0.5.5",
+=======
+>>>>>>> 220531264d1637a344b00ae04eaac04590d18ea3
         "html-webpack-plugin": "2.30.1",
         "node-sass": "4.7.2",
         "sass-loader": "6.0.6",
