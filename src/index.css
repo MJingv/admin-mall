@@ -1,6 +1,9 @@
 #app{
-
     font-size: 50px;
     color: aqua;
+}
+.test{
+    background-image: url(./1.jpeg);
+    color: darkblue;
 }
 

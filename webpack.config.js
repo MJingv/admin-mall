@@ -7,7 +7,8 @@ module.exports = {
     entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'js/app.js',
+        publicPath: '/dist/'
     },
     module: {
         rules: [
@@ -23,22 +24,24 @@ module.exports = {
 
                 }
             },
+            // css文件的处理
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
+
+            // // sass文件的处理
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                        loader: "style-loader" // 将 JS 字符串生成为 style 节点
-                    }, {
-                        loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
-                    }, {
-                        loader: "sass-loader" // 将 Sass 编译成 CSS
-                    }]
-
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader!sass-loader'
+                })
             },
+
             // 图片的配置
             {
                 test: /\.(png|jpg|gif|jpeg)$/,
@@ -47,18 +50,20 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
+                            name: 'resource/[name].[ext]'
                         }
                     }
                 ]
             },
             // 字体图标的配置
             {
-                test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
+                test: /\.(woff|svg|eot|ttf|woff2)$/,
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
+                            name: 'resource/[name].[ext]'
                         }
                     }
                 ]
@@ -68,8 +73,15 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({template: './src/index.html'}),
         // 独立css文件
-        new ExtractTextPlugin("css/[name].css"),
-
-    ]
+        new ExtractTextPlugin("css/app.css"),
+        // 提出公共模块
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            filename: 'js/base.js'
+        })
+    ],
+    devServer: {
+        port: 9001
+    }
 };
 
