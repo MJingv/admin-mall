@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css'
 import './index.scss'
 import 'font-awesome/css/font-awesome.min.css'
+
 let a = 1;
 
 ReactDOM.render(

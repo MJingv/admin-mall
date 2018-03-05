@@ -3,11 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "repository": "git@gitee.com:https://github.com/MJingv/admin-mall",
-<<<<<<< HEAD
-    "author": "Rosen <6256199542qq.com>",
-=======
     "author": "Jehol <625619954@qq.com>",
->>>>>>> 220531264d1637a344b00ae04eaac04590d18ea3
     "license": "MIT",
     "scripts": {
         "dev": "node_modules/.bin/webpack-dev-server",

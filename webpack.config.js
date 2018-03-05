@@ -7,7 +7,6 @@ module.exports = {
     entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
-
         filename: 'bundle.js'
     },
     module: {
@@ -42,7 +41,7 @@ module.exports = {
             },
             // 图片的配置
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|jpeg)$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -64,7 +63,6 @@ module.exports = {
                     }
                 ]
             }
-
         ]
     },
     plugins: [
