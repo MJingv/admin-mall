@@ -10,6 +10,13 @@ module.exports = {
         filename: 'js/app.js',
         publicPath: '/dist/'
     },
+    resolve: {
+        alias: {
+            page: path.resolve(__dirname, 'src/page'),
+            components: path.resolve(__dirname, 'src/components'),
+
+        }
+    },
     module: {
         rules: [
             // react(jsx)语法的处理

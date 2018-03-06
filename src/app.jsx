@@ -1,16 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css'
-import './index.scss'
 import 'font-awesome/css/font-awesome.min.css'
+import {BrowserRouter as Router, Switch, Redirect, Route, Link} from 'react-router-dom'
+import { DatePicker, Button} from 'antd';
+import 'antd/dist/antd.css';
 
-let a = 1;
+//page
+import Home from 'page/home/index.jsx'
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Router>
+                    <Switch>
+                        <Route exact path='/' component={Home}/>
+                        <Redirect from='*' to='/'></Redirect>
+                    </Switch>
+                </Router>
+
+            </div>
+        )
+    }
+}
 
 ReactDOM.render(
-    <div>
-        <div className='test'>{a}</div>
-        <i className='fa fa-cart-arrow-down'></i>
-
-    </div>,
+    <App/>,
     document.getElementById('app')
-);
+)
