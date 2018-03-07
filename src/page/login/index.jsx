@@ -1,12 +1,11 @@
 import React from 'react'
-import Layout from 'components/layout/index.jsx'
 
 export default class  extends React.Component {
     render() {
         return (
-           <div>
-               i a home
-           </div>
+            <div>
+                i am login
+            </div>
         )
 
     }
