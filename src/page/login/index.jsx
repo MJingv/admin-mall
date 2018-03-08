@@ -4,7 +4,7 @@ export default class  extends React.Component {
     render() {
         return (
             <div>
-                i am login
+                i am login!!!
             </div>
         )
 

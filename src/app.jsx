@@ -13,21 +13,20 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                {/*<Route path='/dist/login' component={Login}/>*/}
-                <Route path='/home' component={Home}/>
-                {/*<Switch>*/}
-
-
-                    {/*<Route path='/' render={props => (*/}
-                        {/*<Layout>*/}
-                            {/*<Switch>*/}
+                <Switch>
+                    <Route path='/login' component={Login}/>
+                    {/*path='/'滞后*/}
+                    <Route path='/' render={props => (
+                        <Layout>
+                            <Switch>
                                 {/*<Route exact path='/' component={Home}/>*/}
-                                {/*/!*<Redirect from='*' to='/'></Redirect>*!/*/}
-                            {/*</Switch>*/}
-                        {/*</Layout>*/}
-                    {/*)}>*/}
-                    {/*</Route>*/}
-                {/*</Switch>*/}
+                                <Route path='/home' component={Home}/>
+                            </Switch>
+                        </Layout>
+                    )}>
+
+                    </Route>
+                </Switch>
             </Router>
         )
     }

@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/app.js',
-        publicPath: '/dist/'
+        // publicPath: '/'
     },
     resolve: {
         alias: {
@@ -88,7 +88,10 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 9001
+        contentBase: './dist',
+        port: 9001,
+        historyApiFallback: true
+        // compress: true,
     }
 };
 

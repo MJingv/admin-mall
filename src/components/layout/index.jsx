@@ -13,14 +13,15 @@ const menu = (
 );
 
 export default class  extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             collapsed: false,
             currentUser: {
                 name: 'jehol'
             }
         }
+        console.log(this.props.children)
     }
 
     render() {
@@ -75,7 +76,7 @@ export default class  extends React.Component {
                         }
                     </Header>
                     <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
-                        Content
+                        {this.props.children}
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
                         ADMIN MALL ©2018 Created by Jehol
