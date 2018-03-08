@@ -2,6 +2,6 @@
 bower_components
 node_modules
 npm-debug.log
-.DS_Store
-dist
+*.DS_Store
+dist/
 
