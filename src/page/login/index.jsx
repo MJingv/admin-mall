@@ -1,6 +1,7 @@
 import {Form, Icon, Input, Button} from 'antd';
 import React from 'react'
 import './index.scss'
+import axios from 'axios'
 
 const {Item} = Form;
 
@@ -11,11 +12,17 @@ export default class  extends React.Component {
             userName: '',
             password: '',
         };
+        axios.get('http://admintest.happymmall.com//manage/statistic/base_count.do')
+            .then((res) => {
+                console.log(res);
+            })
     }
 
     handleSubmit(e) {
         e.preventDefault();
         console.log(e)
+
+
     }
 
     render() {
@@ -29,9 +36,9 @@ export default class  extends React.Component {
                     <Item className='form-item'>
                         <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                placeholder="用户名/Username"
-                               onChange={()=>{
+                               onChange={() => {
                                    this.setState({
-                                       userName:userName
+                                       userName: userName
                                    })
                                }}
                         />
@@ -39,9 +46,9 @@ export default class  extends React.Component {
                     <Item className='form-item'>
                         <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
                                placeholder="密码/Password"
-                               onChange={()=>{
+                               onChange={() => {
                                    this.setState({
-                                       password:password
+                                       password: password
                                    })
                                }}/>
                     </Item>

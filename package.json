@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "antd": "^3.2.3",
+        "axios": "^0.18.0",
         "font-awesome": "^4.7.0",
         "prop-types": "15.6.0",
         "rc-pagination": "1.15.1",
