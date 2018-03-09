@@ -1,21 +1,27 @@
 import {Form, Icon, Input, Button} from 'antd';
 import React from 'react'
 import './index.scss'
+import User from 'api/user.jsx'
 import axios from 'axios'
 
 const {Item} = Form;
+const _user = new User();
 
 export default class  extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: '',
-            password: '',
+            username: 'admin',
+            password: 'admin',
         };
-        axios.get('http://admintest.happymmall.com//manage/statistic/base_count.do')
-            .then((res) => {
-                console.log(res);
-            })
+        _user.login(
+            {
+                username: this.state.username,
+                password: this.state.password
+            }
+        ).then((res)=>{
+            console.log(res)
+        })
     }
 
     handleSubmit(e) {

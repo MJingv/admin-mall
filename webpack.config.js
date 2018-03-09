@@ -91,7 +91,19 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         port: 9001,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            '/manage': {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin: true,
+
+            },
+            '/user/logout.do': {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin: true,
+
+            }
+        }
         // compress: true,
     }
 };
