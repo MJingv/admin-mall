@@ -2,49 +2,54 @@ import {Form, Icon, Input, Button} from 'antd';
 import React from 'react'
 import './index.scss'
 import User from 'api/user.jsx'
-import axios from 'axios'
 
 const {Item} = Form;
 const _user = new User();
+import MUtil from 'api/config.jsx'
+
+const _mm = new MUtil();
 
 export default class  extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'admin',
-            password: 'admin',
+            username: '',
+            password: '',
+            redirect: _mm.getUrlParam('redirect') || '/',
         };
-        _user.login(
-            {
-                username: this.state.username,
-                password: this.state.password
-            }
-        ).then((res)=>{
-            console.log(res)
-        })
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        console.log(e)
-
-
+    handleSubmit() {
+        let loginInfo = {
+                username: this.state.username,
+                password: this.state.password
+            },
+            checkResult = _user.checkLoginInfo(loginInfo);
+        if (checkResult.status) {
+            //如果验证通过
+            _user.login(loginInfo).then((res) => {
+                this.props.history.push(this.state.redirect)
+            }).catch((errMsg) => {
+                _mm.errorTips(errMsg.msg)
+            })
+        } else {
+            _mm.errorTips(checkResult.msg)
+        }
     }
 
     render() {
-        const {userName, password} = this.state;
         return (
             <div className='background'>
-                <Form className='form-wrap' onSubmit={this.handleSubmit}>
+                <Form className='form-wrap'>
                     <Item className='form-item'>
                         <div className='form-logo'>Welcome to ADMIN MALL</div>
                     </Item>
                     <Item className='form-item'>
                         <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                placeholder="用户名/Username"
-                               onChange={() => {
+                               onChange={(e) => {
                                    this.setState({
-                                       userName: userName
+                                       username: e.target.value
                                    })
                                }}
                         />
@@ -52,14 +57,14 @@ export default class  extends React.Component {
                     <Item className='form-item'>
                         <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
                                placeholder="密码/Password"
-                               onChange={() => {
+                               onChange={(e) => {
                                    this.setState({
-                                       password: password
+                                       password: e.target.value
                                    })
                                }}/>
                     </Item>
                     <Item className='form-item'>
-                        <Button type="primary" htmlType="submit" className="form-button">
+                        <Button type="primary" className="form-button" onClick={::this.handleSubmit}>
                             登录 Log in
                         </Button>
                     </Item>

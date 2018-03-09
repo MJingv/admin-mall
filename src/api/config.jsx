@@ -15,7 +15,6 @@ export default class MUtil {
                     reject(res.data);
                 }
             }).catch((err) => {
-                console.log(err)
                 reject({
                     errcode: -1,
                     errmsg: JSON.stringify(err)
@@ -27,5 +26,20 @@ export default class MUtil {
     //跳转登录
     doLogin() {
         window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+    }
+
+    //获取url参数
+    getUrlParam(name) {
+        //param=123&param1=333
+        let queryString = window.location.search.split('?')[1] || '',
+            reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
+            result = queryString.match(reg)
+        return result ? decodeURIComponent(result[2]) : null
+
+    }
+
+    errorTips(errMsg) {
+        alert(errMsg || '发生错误')
+
     }
 }

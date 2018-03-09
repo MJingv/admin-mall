@@ -8,8 +8,30 @@ export default class User {
         return _mm.request({
             method: 'post',
             url: `/manage/user/login.do?username=${loginInfo.username}&password=${loginInfo.password}`,
-            data:loginInfo
+            data: loginInfo
         })
     }
+
+    //验证登录信息
+    checkLoginInfo(loginInfo) {
+        let username = loginInfo.username.trim(), password = loginInfo.password.trim();
+        if (typeof username !== 'string' || username.length === 0) {
+            return {
+                msg: '用户名不能为空',
+                status: false
+            }
+        }
+        if (typeof password !== 'string' || password.length === 0) {
+            return {
+                msg: '密码不能为空',
+                status: false
+            }
+        }
+        return {
+            msg: '验证通过',
+            status: true
+        }
+    }
+
 
 }
