@@ -12,6 +12,13 @@ export default class User {
         })
     }
 
+    logout() {
+        return _mm.request({
+            method: 'post',
+            url: '/user/logout.do'
+        })
+    }
+
     //验证登录信息
     checkLoginInfo(loginInfo) {
         let username = loginInfo.username.trim(), password = loginInfo.password.trim();

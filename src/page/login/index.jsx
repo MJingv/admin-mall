@@ -1,11 +1,11 @@
-import {Form, Icon, Input, Button} from 'antd';
+import {Form, Icon, Input, Button, message} from 'antd';
 import React from 'react'
 import './index.scss'
 import User from 'api/user.jsx'
+import MUtil from 'api/config.jsx'
 
 const {Item} = Form;
 const _user = new User();
-import MUtil from 'api/config.jsx'
 
 const _mm = new MUtil();
 
@@ -28,12 +28,14 @@ export default class  extends React.Component {
         if (checkResult.status) {
             //如果验证通过
             _user.login(loginInfo).then((res) => {
+                let result = _mm.setStorage('userInfo', JSON.stringify(res));
+                result.status ? message.success(result.msg) : message.error(result, msg);
                 this.props.history.push(this.state.redirect)
             }).catch((errMsg) => {
-                _mm.errorTips(errMsg.msg)
+                message.error(_mm.errorTips(errMsg.msg))
             })
         } else {
-            _mm.errorTips(checkResult.msg)
+            message.error(_mm.errorTips(checkResult.msg))
         }
     }
 

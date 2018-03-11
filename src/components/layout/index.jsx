@@ -1,16 +1,14 @@
 import React from 'react';
-import {Layout, Menu, Icon, Avatar, Dropdown, Spin} from 'antd';
+import {Layout, Menu, Icon, Avatar, Dropdown, Spin, message} from 'antd';
+import MUtil from 'api/config.jsx'
+import User from 'api/user.jsx'
 
 import './index.scss'
 
 const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
-
-const menu = (
-    <Menu selectedKeys={[]}>
-        <Menu.Item key="logout"><Icon type="logout"/>退出登录</Menu.Item>
-    </Menu>
-);
+const _mm = new MUtil();
+const _user = new User();
 
 export default class  extends React.Component {
     constructor(props) {
@@ -18,10 +16,25 @@ export default class  extends React.Component {
         this.state = {
             collapsed: false,
             currentUser: {
-                name: 'jehol'
+                name: _mm.getStorage('userInfo').username
             }
         }
         console.log(this.props.children)
+    }
+
+    handleMenuClick({key}) {
+        if (key === 'info') {
+            // this.props.dispatch(routerRedux.push('/exception/trigger'));
+            return;
+        }
+        if (key === 'logout') {
+            _user.logout().then(() => {
+                _mm.removeStorage('userInfo');
+                window.location.href = '/login'
+            }, err => {
+                message.error(err)
+            })
+        }
     }
 
     render() {
@@ -65,7 +78,12 @@ export default class  extends React.Component {
                             }}
                         />
                         {this.state.currentUser.name ?
-                            <Dropdown overlay={menu} className='user'>
+                            <Dropdown overlay={
+                                <Menu onClick={::this.handleMenuClick}>
+                                    <Menu.Item key="logout"><Icon type="logout"/>退出登录</Menu.Item>
+                                    <Menu.Item key="info"><Icon type="info-circle-o"/>个人中心</Menu.Item>
+                                </Menu>
+                            } className='user'>
                                 <div className='right-info'>
                                     <div>{`欢迎您，${this.state.currentUser.name}`}</div>
                                     <Avatar icon="user"/>
@@ -78,7 +96,7 @@ export default class  extends React.Component {
                     <Content style={{margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
                         {this.props.children}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
+                    <Footer style={{textAlign: 'center'}}>
                         ADMIN MALL ©2018 Created by Jehol
                     </Footer>
                 </Layout>
