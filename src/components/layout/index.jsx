@@ -37,19 +37,34 @@ export default class  extends React.Component {
         }
     }
 
+    handleMainMenuClick({key}) {
+        if (key === 'home') {
+         console.log(this.props)
+        }
+        if (key === 'logout') {
+            _user.logout().then(() => {
+                _mm.removeStorage('userInfo');
+                window.location.href = '/login'
+            }, err => {
+                message.error(err)
+            })
+        }
+    }
+
     render() {
         return (
             <Layout>
                 <Sider>
                     <div className="logo"/>
                     <Menu
+                        onClick={::this.handleMainMenuClick}
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         mode="inline"
                         theme="dark"
                         inlineCollapsed={this.state.collapsed}
                     >
-                        <Menu.Item key="1">
+                        <Menu.Item key="home">
                             <Icon type="pie-chart"/>
                             <span>首页</span>
                         </Menu.Item>

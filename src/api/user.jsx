@@ -40,5 +40,31 @@ export default class User {
         }
     }
 
+    doRegister(registerInfo) {
+        return _mm.request({
+            type: 'post',
+            url: '/user/register.do',
+            data: registerInfo
+        });
+    }
+
+    verifyUserName(userInfo) {
+        return _mm.request({
+            type: 'post',
+            url: '/user/check_valid.do',
+            data: userInfo
+        });
+    }
+
+
+
+    getUserList(pageNum) {
+        return _mm.request({
+            type: 'post',
+            url: '/manage/user/list.do',
+            data: pageNum,
+        });
+    }
+
 
 }
