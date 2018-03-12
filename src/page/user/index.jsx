@@ -10,7 +10,7 @@ export default class  extends React.Component {
         this.state = {
             data: [],
             loading: false,
-            pageNum: 3,
+            pageNum: 1,
         };
     }
 
@@ -33,7 +33,7 @@ export default class  extends React.Component {
                 data: [],
                 loading: true,
             })
-            message(err)
+            message.error(err)
         })
 
     }

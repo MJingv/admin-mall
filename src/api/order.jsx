@@ -4,15 +4,22 @@ const _mm = new MUtil();
 
 
 export default class Order {
-    // 首页数据统计
-    getOrderList(pageInfo) {
+    getOrderList(pageNum) {
         return _mm.request({
-            method:'post',
-            url: '/manage/order/list.do',
+            method: 'post',
+            url: `/manage/order/list.do?pageNum=${pageNum}`,
             data: {
-                pageSize: pageInfo.pageSize || 10,
-                pageNum: pageInfo.pageNum || 1
+                pageSize: 10,
+                pageNum: pageNum || 1
             }
+        });
+    }
+
+    searchOrder(orderNo) {
+        return _mm.request({
+            method: 'post',
+            url: `/manage/order/search.do?orderNo=${orderNo}`,
+            data: {orderNo}
         });
     }
 }

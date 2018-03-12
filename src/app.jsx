@@ -10,7 +10,7 @@ import Home from 'page/home/index.jsx'
 import Login from 'page/login/index.jsx'
 import Product from 'page/product/index.jsx'
 import UserList from 'page/user/index.jsx'
-import Order from 'page/order/index.jsx'
+import OrderList from 'page/order/index.jsx'
 import Error from 'page/error/index.jsx'
 import Register from 'page/user/register.jsx'
 
@@ -22,7 +22,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/home' component={Home}/>
                     <Route path='/product' component={Product}/>
-                    <Route path='/order' component={Order}/>
+                    <Route path='/order' component={OrderList}/>
                     <Route path='/user' component={UserList}/>
                     {/*<Route path='/user/register' component={Register}/>*/}
                     {/*<Redirect exact from='/user' to="/user/index"/>*/}
