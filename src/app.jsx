@@ -23,9 +23,9 @@ class App extends React.Component {
                     <Route path='/home' component={Home}/>
                     <Route path='/product' component={Product}/>
                     <Route path='/order' component={Order}/>
-                    <Route path='/user/index' component={UserList}/>
-                    <Route path='/user/register' component={Register}/>
-                    <Redirect exact from='/user' to="/user/index"/>
+                    <Route path='/user' component={UserList}/>
+                    {/*<Route path='/user/register' component={Register}/>*/}
+                    {/*<Redirect exact from='/user' to="/user/index"/>*/}
                     <Route component={Error}/>
                 </Switch>
             </Layout>

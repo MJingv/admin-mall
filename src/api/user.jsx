@@ -42,7 +42,7 @@ export default class User {
 
     doRegister(registerInfo) {
         return _mm.request({
-            type: 'post',
+            method: 'post',
             url: '/user/register.do',
             data: registerInfo
         });
@@ -50,19 +50,21 @@ export default class User {
 
     verifyUserName(userInfo) {
         return _mm.request({
-            type: 'post',
+            method: 'post',
             url: '/user/check_valid.do',
             data: userInfo
         });
     }
 
 
-
     getUserList(pageNum) {
         return _mm.request({
-            type: 'post',
-            url: '/manage/user/list.do',
-            data: pageNum,
+            method: 'post',
+            url:  `/manage/user/list.do?pageNum=${pageNum}`,
+            data: {
+                pageNum: pageNum,
+                pageSize: 10,
+            },
         });
     }
 
