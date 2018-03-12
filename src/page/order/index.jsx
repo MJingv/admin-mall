@@ -15,7 +15,6 @@ export default class  extends React.Component {
             orderNo: '',
             orderTotal:0,
         }
-
     }
 
     componentWillMount() {

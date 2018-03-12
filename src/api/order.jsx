@@ -22,5 +22,14 @@ export default class Order {
             data: {orderNo}
         });
     }
+
+    getOrderDetail(orderNo) {
+        return _mm.request({
+            method: 'post',
+            url: `/manage/order/detail.do?orderNo=${orderNo}`,
+            data: {orderNo}
+        });
+
+    }
 }
 

@@ -11,6 +11,7 @@ import Login from 'page/login/index.jsx'
 import Product from 'page/product/index.jsx'
 import UserList from 'page/user/index.jsx'
 import OrderList from 'page/order/index.jsx'
+import OrderDetail from 'page/order/detail.jsx'
 import Error from 'page/error/index.jsx'
 import Register from 'page/user/register.jsx'
 
@@ -20,12 +21,13 @@ class App extends React.Component {
         const LayoutRouter = (
             <Layout>
                 <Switch>
-                    <Route path='/home' component={Home}/>
+                    <Route  exact path='/' component={Home}/>
                     <Route path='/product' component={Product}/>
-                    <Route path='/order' component={OrderList}/>
+                    <Route path='/order/index' component={OrderList}/>
+                    <Route path='/order/detail' component={OrderDetail}/>
+                    <Redirect exact from='/order' to="/order/index"/>
                     <Route path='/user' component={UserList}/>
                     {/*<Route path='/user/register' component={Register}/>*/}
-                    {/*<Redirect exact from='/user' to="/user/index"/>*/}
                     <Route component={Error}/>
                 </Switch>
             </Layout>

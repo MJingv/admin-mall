@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/app.js',
-        // publicPath: '/'
+        publicPath: '/dist/'
     },
     resolve: {
         alias: {
