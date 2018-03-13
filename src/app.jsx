@@ -21,10 +21,10 @@ class App extends React.Component {
         const LayoutRouter = (
             <Layout>
                 <Switch>
-                    <Route  exact path='/' component={Home}/>
+                    <Route exact path='/' component={Home}/>
                     <Route path='/product' component={Product}/>
                     <Route path='/order/index' component={OrderList}/>
-                    <Route path='/order/detail' component={OrderDetail}/>
+                    <Route path='/order/detail/:orderNumber' component={OrderDetail}/>
                     <Redirect exact from='/order' to="/order/index"/>
                     <Route path='/user' component={UserList}/>
                     {/*<Route path='/user/register' component={Register}/>*/}

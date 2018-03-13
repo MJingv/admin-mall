@@ -13,7 +13,7 @@ export default class  extends React.Component {
             data: [],
             loading: false,
             orderNo: '',
-            orderTotal:0,
+            orderTotal: 0,
         }
     }
 
@@ -29,7 +29,7 @@ export default class  extends React.Component {
             this.setState({
                 data: res.list,
                 loading: false,
-                orderTotal:res.total
+                orderTotal: res.total
             })
             console.log(res)
         }, (err) => {
@@ -46,7 +46,7 @@ export default class  extends React.Component {
             this.setState({
                 data: res.list,
                 loading: false,
-                orderTotal:res.total
+                orderTotal: res.total
             })
         }, (err) => {
             message.error(err.msg)
@@ -54,6 +54,7 @@ export default class  extends React.Component {
     }
 
     render() {
+        let that = this
         const columns = [{
             title: '订单号',
             dataIndex: 'orderNo',
@@ -80,14 +81,14 @@ export default class  extends React.Component {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
-            render() {
-                return <a href="#">查看</a>;
+            render(text,record,index) {
+                return <Link to={`/order/detail/${record.orderNo}`}>详情</Link>
             }
 
         }];
-        let that = this
+
         const pagination = {
-            total:this.state.orderTotal,
+            total: this.state.orderTotal,
             current: this.state.pageNum,
             onChange(current) {
                 that.setState({
@@ -112,7 +113,7 @@ export default class  extends React.Component {
                 </div>
 
 
-                <Table columns={columns} dataSource={this.state.data} pagination={pagination }
+                <Table columns={columns} dataSource={this.state.data} pagination={pagination}
                        loading={this.state.loading}/>
             </div>
         )
