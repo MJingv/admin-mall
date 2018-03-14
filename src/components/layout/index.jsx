@@ -70,13 +70,12 @@ export default class  extends React.Component {
                         </Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="mail"/><span>商品</span></span>}>
                             <Menu.Item key="2">商品管理</Menu.Item>
-                            <Menu.Item key="3">品类管理</Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="mail"/><span>订单</span></span>}>
-                            <Menu.Item key="4">订单管理</Menu.Item>
+                            <Menu.Item key="3">订单管理</Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" title={<span><Icon type="mail"/><span>用户</span></span>}>
-                            <Menu.Item key="5">用户列表</Menu.Item>
+                            <Menu.Item key="4">用户列表</Menu.Item>
                         </SubMenu>
                     </Menu>
 
