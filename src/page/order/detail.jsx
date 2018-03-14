@@ -9,15 +9,22 @@ export default class  extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderNo: this.props.match.params.orderNumber || '',
+            orderNo: this.props.match.params.orderNumber ,
             data: [],
             loading: false,
-            orderNo: '',
             imageHost: ''
         };
     }
 
     componentWillMount() {
+        console.log('will')
+        console.log(this.state)
+
+    }
+
+    componentDidMount() {
+        console.log('did')
+        console.log(this.state)
         this.initData()
     }
 
@@ -26,6 +33,7 @@ export default class  extends React.Component {
             loading: true,
         })
         _order.getOrderDetail(this.state.orderNo).then(res => {
+            console.log(res)
             this.setState({
                 imageHost: res.imageHost,
                 data: res,
