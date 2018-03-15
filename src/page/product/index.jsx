@@ -14,16 +14,6 @@ export default class  extends React.Component {
             orderNo: '',
             orderTotal: 0,
         }
-        _product.getProductList().then((res) => {
-            console.log(res)
-        })
-        _product.setProductStatus({
-            productId: 26,
-            status: 1,
-        }).then(res => {
-            console.log(res)
-        })
-
     }
 
     componentWillMount() {
@@ -91,10 +81,10 @@ export default class  extends React.Component {
                                         productId: record.id,
                                         status: record.status === 1 ? 2 : 1
                                     }).then((res) => {
-                                            message.success(res.data)
+                                            message.success(res)
                                             that.initData()
                                         }, (err) => {
-                                            message.error(err.data)
+                                            message.error(err)
                                         }
                                     )
                                 }}/>
@@ -109,7 +99,7 @@ export default class  extends React.Component {
             render(text, record, index) {
                 return (
                     <div>
-                        <Link to={`/order/detail/${record.id}`}>详情</Link><br/>
+                        <Link to={`/product/detail/${record.id}`}>详情</Link><br/>
                         <Link to={`/order/update/${record.id}`}>编辑</Link>
                     </div>
 

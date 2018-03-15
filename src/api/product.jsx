@@ -32,11 +32,11 @@ export default class Product {
         });
     }
 
-    getProductDetail(orderNo) {
+    getProductDetail(productId) {
         return _mm.request({
             method: 'post',
-            url: `/manage/order/detail.do?orderNo=${orderNo}`,
-            data: {orderNo}
+            url: `/manage/product/detail.do?productId=${productId}`,
+            data: {productId}
         });
 
     }
