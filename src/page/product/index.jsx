@@ -2,7 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Product from 'api/product.jsx'
 import {Table, message, Input, Button, Icon, Switch, Select} from 'antd';
+import MUtil from 'api/config.jsx'
 
+const _mm = new MUtil();
 const _product = new Product();
 export default class  extends React.Component {
     constructor(props) {
@@ -11,9 +13,11 @@ export default class  extends React.Component {
             pageNum: 1,
             data: [],
             loading: false,
-            orderNo: '',
+            searchValue: '',
             orderTotal: 0,
+            searchWay: '',
         }
+
     }
 
     componentWillMount() {
@@ -24,7 +28,10 @@ export default class  extends React.Component {
         this.setState({
             loading: true
         })
-        _product.searchOrder(this.state.orderNo).then((res) => {
+
+        _product.searchProduct(
+            `{${this.state.searchWay}:${this.state.searchValue}}`
+        ).then((res) => {
             this.setState({
                 data: res.list,
                 loading: false,
@@ -100,9 +107,8 @@ export default class  extends React.Component {
                 return (
                     <div>
                         <Link to={`/product/detail/${record.id}`}>详情</Link><br/>
-                        <Link to={`/order/update/${record.id}`}>编辑</Link>
+                        <Link to={`/product/save/${record.id}`}>编辑</Link>
                     </div>
-
                 )
             }
         },
@@ -118,22 +124,28 @@ export default class  extends React.Component {
                 that.initData()
             }
         };
+        const {Option} = Select
         return (
             <div>
                 <div className='search-wrap'>
-                    <Select size='large' style={{maxWidth: 180, width: '100%'}} placeholder="选择查询方式">
-                        <Option value="id">按商品id查询</Option>
-                        <Option value="name">按商品名称查询</Option>
+                    <Select size='large' style={{maxWidth: 180, width: '100%'}} placeholder="选择查询方式"
+                            onSelect={(res) => {
+                                this.setState({
+                                    searchWay: res
+                                })
+                            }}>
+                        <Option value="productId">按商品id查询</Option>
+                        <Option value="productName">按商品名称查询</Option>
                     </Select>
                     <Input size='large' prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
                            placeholder="关键字"
                            onChange={(e) => {
                                this.setState({
-                                   orderNo: e.target.value
+                                   searchValue: e.target.value
                                })
                            }}
                     />
-                    <Button size='large' type="primary" className='search-button'>查询</Button>
+                    <Button size='large' type="primary" className='search-button' onClick={::this.searchFn}>查询</Button>
                 </div>
                 <Table columns={columns} dataSource={this.state.data} pagination={pagination}
                        loading={this.state.loading}/>

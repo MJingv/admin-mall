@@ -24,11 +24,11 @@ export default class Product {
         });
     }
 
-    searchProduct(orderNo) {
+    searchProduct(data) {
         return _mm.request({
             method: 'post',
-            url: `/manage/order/search.do?orderNo=${orderNo}`,
-            data: {orderNo}
+            url: _mm.createURL('/manage/product/search.do', data),
+            data: data
         });
     }
 

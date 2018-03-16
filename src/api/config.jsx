@@ -35,12 +35,20 @@ export default class MUtil {
             reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
             result = queryString.match(reg)
         return result ? decodeURIComponent(result[2]) : null
+    }
 
+    //将post参数拼到url中
+    createURL(url, obj) {
+        url += url.includes('?') ? '' : '?';
+        for (let key in obj) {
+            url += `${key}=${obj[key]}&`
+        }
+        url = /.*&$/.test(url) ? url.substring(0, url.length - 1) : url
+        return url
     }
 
     errorTips(errMsg) {
         return (errMsg || '发生错误');
-
     }
 
     setStorage(name, data) {
@@ -80,4 +88,6 @@ export default class MUtil {
     removeStorage(name) {
         window.localStorage.removeItem(name)
     }
+
+
 }

@@ -52,7 +52,7 @@ export default class  extends React.Component {
             dataIndex: 'productImage',
             key: 'productImage',
             render(productImage) {
-                return <img className='table-img' src={t.state.imageHost + productImage}/>;
+                return <img style={{maxHeight: '10rem'}} className='table-img' src={t.state.imageHost + productImage}/>;
             }
         }, {
             title: '数量',
@@ -72,7 +72,7 @@ export default class  extends React.Component {
         return (
             <div className='order-detail-page'>
                 <Card bordered={false}>
-                    基本信息
+                    <h2>基本信息</h2>
                     <Divider style={{marginBottom: 32}}/>
                     订单号：{data.orderNo}
                     创建时间：{data.createTime}

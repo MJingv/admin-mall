@@ -8,11 +8,11 @@ import Layout from 'components/layout/index.jsx'
 //page
 import Home from 'page/home/index.jsx'
 import Login from 'page/login/index.jsx'
-import Product from 'page/product/index.jsx'
-import ProductDetail from 'page/product/detail.jsx'
+import Product from 'page/product/router.jsx'
 import UserList from 'page/user/index.jsx'
 import OrderList from 'page/order/index.jsx'
 import OrderDetail from 'page/order/detail.jsx'
+
 import Error from 'page/error/index.jsx'
 import Register from 'page/user/register.jsx'
 
@@ -23,8 +23,7 @@ class App extends React.Component {
             <Layout>
                 <Switch>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/product/index' component={Product}/>
-                    <Route path='/product/detail/:productId' component={ProductDetail}/>
+                    <Route path='/product' component={Product}/>
                     <Route path='/order/index' component={OrderList}/>
                     <Route path='/order/detail/:orderNumber' component={OrderDetail}/>
                     <Redirect exact from='/order' to="/order/index"/>
