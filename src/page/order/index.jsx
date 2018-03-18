@@ -100,7 +100,7 @@ export default class  extends React.Component {
         return (
             <div>
                 <div className='search-wrap'>
-                    <Input prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                    <Input size='large' prefix={<Icon type="search" style={{color: 'rgba(0,0,0,.25)'}}/>}
                            placeholder="订单编号/OrderNo"
                            onChange={(e) => {
                                this.setState({
@@ -108,7 +108,7 @@ export default class  extends React.Component {
                                })
                            }}
                     />
-                    <Button type="primary" className='search-button' onClick={::this.searchFn}>查询</Button>
+                    <Button size='large' type="primary" className='search-button' onClick={::this.searchFn}>查询</Button>
 
                 </div>
 
