@@ -1,8 +1,11 @@
 import React from 'react'
 import Product from 'api/product.jsx'
-import {Table, message, Card, Badge, Divider, Input, Select, Upload, Icon, Modal} from 'antd';
+import {Table, message, Card, Badge, Divider, Input, Select, Upload, Icon, Modal, Button} from 'antd';
 import FileUploader from 'common/js/file-uploader.jsx'
 import './index.scss'
+// 引入编辑器以及编辑器样式
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/braft.css'
 
 const _product = new Product();
 const Option = Select.Option;
@@ -12,14 +15,7 @@ export default class  extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            previewVisible: false,
-            previewImage: '',
-            fileList: [{
-                uid: -1,
-                name: 'xxx.png',
-                status: 'done',
-                url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-            }],
+            detail: '',
             selectOptions: [],
             selectValue: '',
             selectSubValue: '',
@@ -46,9 +42,10 @@ export default class  extends React.Component {
         this.setState({
             loading: true,
         })
-        this.getCategoryInfo()
+        this.getCategoryInfo();
         _product.getProductDetail(this.state.productId).then(res => {
             let images = res.subImages.split(',');
+            this.editorInstance.setContent(res.detail, 'html');
             res.subImages = images.map((imgUri) => {
                 return {
                     uri: imgUri,
@@ -63,6 +60,26 @@ export default class  extends React.Component {
             message.error(err.msg)
         })
 
+    }
+
+    saveFn() {
+        let data = {
+            categoryId: this.state.categoryId,
+            price: parseFloat(this.state.price),
+            stock: parseInt(this.state.price),
+            name: this.state.name,
+            subtitle: this.state.subtitle,
+            detail: this.state.detail,
+            id: this.state.productId,
+            subImages: this._getImagesString(this.state.subImages),
+            status: this.state.status,
+        }
+        console.log(data)
+        _product.saveProduct(data).then(res => message.error(res.data), err => message.error(err.data))
+    }
+
+    _getImagesString(arr) {
+        return arr.map(item => (item.uri)).join(',')
     }
 
     onValueChange(e) {
@@ -116,12 +133,9 @@ export default class  extends React.Component {
                 message.error(err.msg)
             })
         }
-
-
     }
 
     onUploadSuccess(res) {
-        console.log(res)
         let subImages = this.state.subImages;
         subImages.push(res);
         this.setState({subImages})
@@ -131,8 +145,18 @@ export default class  extends React.Component {
         message.error(err)
     }
 
+    handleHTMLChange(value) {
+        this.setState({detail: value})
+    }
+
     render() {
-        const {name, price, subtitle, subImages, stock, selectValue, selectSubValue, selectOptions, selectSubOptions} = this.state;
+        const {productId, name, price, subtitle, subImages, detail, stock, selectValue, selectSubValue, selectOptions, selectSubOptions} = this.state;
+
+        const editorProps = {
+            contentFormat: 'html',
+            placeholder: 'Hello World!',
+            contentId: productId,
+        }
         return (
             <div className='product-save-page'>
                 <Card bordered={false}>
@@ -195,9 +219,14 @@ export default class  extends React.Component {
 
                     <div className='product-detail'>
                         <h3>商品详情</h3>
+                        <BraftEditor {...editorProps} onHTMLChange={::this.handleHTMLChange}
+                                     ref={instance => this.editorInstance = instance}
+                        />
                     </div>
 
                 </Card>
+                <Button size='large' type="primary" className='search-button' onClick={::this.saveFn}>保存提交</Button>
+
             </div>
         )
 

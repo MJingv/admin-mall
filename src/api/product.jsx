@@ -48,6 +48,13 @@ export default class Product {
         });
 
     }
+    saveProduct(data){
+        return _mm.request({
+            method: 'post',
+            url: _mm.createURL('/manage/product/save.do', data),
+        });
+
+    }
 
 
 
