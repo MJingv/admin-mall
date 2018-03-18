@@ -1,5 +1,7 @@
 import React from 'react';
 import {Layout, Menu, Icon, Avatar, Dropdown, Spin, message} from 'antd';
+import {BrowserRouter as Router, Switch, Redirect, Route, Link} from 'react-router-dom'
+
 import MUtil from 'api/config.jsx'
 import User from 'api/user.jsx'
 
@@ -39,7 +41,7 @@ export default class  extends React.Component {
 
     handleMainMenuClick({key}) {
         if (key === 'home') {
-         console.log(this.props)
+            console.log(this.props)
         }
         if (key === 'logout') {
             _user.logout().then(() => {
@@ -64,18 +66,29 @@ export default class  extends React.Component {
                         theme="dark"
                         inlineCollapsed={this.state.collapsed}
                     >
+
                         <Menu.Item key="home">
-                            <Icon type="pie-chart"/>
-                            <span>首页</span>
+                            <Link to='/'>
+                                <Icon type="pie-chart"/>
+                                <span>首页</span>
+                            </Link>
                         </Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="mail"/><span>商品</span></span>}>
-                            <Menu.Item key="2">商品管理</Menu.Item>
+                            <Menu.Item key="2">
+                                <Link to='/product'>
+                                    商品管理
+                                </Link>
+                            </Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="mail"/><span>订单</span></span>}>
-                            <Menu.Item key="3">订单管理</Menu.Item>
+                            <Menu.Item key="3">
+                                <Link to='/order'>订单管理
+                                </Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" title={<span><Icon type="mail"/><span>用户</span></span>}>
-                            <Menu.Item key="4">用户列表</Menu.Item>
+                            <Menu.Item key="4">
+                                <Link to='/user'>用户列表
+                                </Link></Menu.Item>
                         </SubMenu>
                     </Menu>
 
