@@ -21,7 +21,6 @@ export default class  extends React.Component {
                 name: _mm.getStorage('userInfo').username
             }
         }
-        console.log(this.props.children)
     }
 
     handleMenuClick({key}) {

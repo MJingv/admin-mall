@@ -41,10 +41,11 @@
         "antd": "^3.2.3",
         "axios": "^0.18.0",
         "font-awesome": "^4.7.0",
-        "prop-types": "15.6.0",
+        "prop-types": "^15.6.1",
         "rc-pagination": "1.15.1",
         "react": "16.2.0",
         "react-dom": "16.2.0",
+        "react-fileupload": "^2.4.0",
         "react-router-dom": "4.2.2",
         "simditor": "^2.3.6"
     }

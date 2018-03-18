@@ -16,7 +16,6 @@ export default class Product {
     }
 
     setProductStatus(data) {
-        console.log(data)
         return _mm.request({
             method: 'post',
             url: `/manage/product/set_sale_status.do?productId=${data.productId}&status=${data.status}`,
