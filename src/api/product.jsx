@@ -40,5 +40,18 @@ export default class Product {
         });
 
     }
+
+    getCategory(data) {
+        return _mm.request({
+            method: 'post',
+            url: _mm.createURL('/manage/category/get_category.do', data),
+
+        });
+
+    }
+
+
+
+
 }
 

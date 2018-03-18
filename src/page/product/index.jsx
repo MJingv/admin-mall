@@ -28,31 +28,15 @@ export default class  extends React.Component {
         this.setState({
             loading: true
         })
-
-        if ('productId' === this.state.searchWay) {
-            //按id查询
-            _product.searchProduct({productId: this.state.searchValue}).then((res) => {
-                this.setState({
-                    data: res.list,
-                    loading: false,
-                    orderTotal: res.total
-                })
-            }, (err) => {
-                message.error(err.msg)
+        _product.searchProduct({[this.state.searchWay]: this.state.searchValue}).then((res) => {
+            this.setState({
+                data: res.list,
+                loading: false,
+                orderTotal: res.total
             })
-
-        } else {
-            //按name查询
-            _product.searchProduct({productName: this.state.searchValue}).then((res) => {
-                this.setState({
-                    data: res.list,
-                    loading: false,
-                    orderTotal: res.total
-                })
-            }, (err) => {
-                message.error(err.msg)
-            })
-        }
+        }, (err) => {
+            message.error(err.msg)
+        })
     }
 
     initData() {
