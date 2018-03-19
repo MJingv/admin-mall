@@ -1,16 +1,28 @@
 import axios from 'axios';
+import qs from 'qs';
 
 export default class MUtil {
     request(param) {
         return new Promise((resolve, reject) => {
-            // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
             axios({
                 method: param.method || 'get',
                 url: param.url || '',
-                data: param.data
+                data: qs.stringify(param.data),
+                dataType: param.dataType || 'json',
+                headers:
+                    {
+                        'Content-Type':
+                            'application/x-www-form-urlencoded;charset=UTF-8',
+                        'X-Requested-With':
+                            'XMLHttpRequest'
+                    }
             }).then((res) => {
+                // 数据请求成功s
                 if (0 === res.data.status) {
                     resolve(res.data.data);
+                } else if (10 === res.data.status) {
+                    //未登录
+                    this.doLogin()
                 } else {
                     reject(res.data);
                 }

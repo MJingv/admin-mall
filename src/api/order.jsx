@@ -7,18 +7,15 @@ export default class Order {
     getOrderList(pageNum) {
         return _mm.request({
             method: 'post',
-            url: `/manage/order/list.do?pageNum=${pageNum}`,
-            data: {
-                pageSize: 10,
-                pageNum: pageNum || 1
-            }
+            url: `/manage/order/list.do`,
+            data: pageNum
         });
     }
 
     searchOrder(orderNo) {
         return _mm.request({
             method: 'post',
-            url: `/manage/order/search.do?orderNo=${orderNo}`,
+            url: `/manage/order/search.do`,
             data: {orderNo}
         });
     }
@@ -26,7 +23,7 @@ export default class Order {
     getOrderDetail(orderNo) {
         return _mm.request({
             method: 'post',
-            url: `/manage/order/detail.do?orderNo=${orderNo}`,
+            url: `/manage/order/detail.do`,
             data: {orderNo}
         });
 

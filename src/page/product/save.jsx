@@ -24,11 +24,11 @@ export default class  extends React.Component {
             loading: false,
             imageHost: '',
             name: '',
-            price: '',
+            price: 0,
             subtitle: '',
             subImages: [],
             categoryId: '',
-            stock: '',
+            stock: 0,
             status: 1,//在售
         };
     }
@@ -37,29 +37,30 @@ export default class  extends React.Component {
         this.initData()
     }
 
-
     initData() {
         this.setState({
             loading: true,
         })
         this.getCategoryInfo();
-        _product.getProductDetail(this.state.productId).then(res => {
-            let images = res.subImages.split(',');
-            this.editorInstance.setContent(res.detail, 'html');
-            res.subImages = images.map((imgUri) => {
-                return {
-                    uri: imgUri,
-                    url: res.imageHost + imgUri
-                }
-            });
-            this.setState(res)
-        }, err => {
-            this.setState({
-                loading: true,
+        if (this.state.productId) {
+            //编辑页面回填数据
+            _product.getProductDetail(this.state.productId).then(res => {
+                let images = res.subImages.split(',');
+                this.editorInstance.setContent(res.detail, 'html');
+                res.subImages = images.map((imgUri) => {
+                    return {
+                        uri: imgUri,
+                        url: res.imageHost + imgUri
+                    }
+                });
+                this.setState(res)
+            }, err => {
+                this.setState({
+                    loading: true,
+                })
+                message.error(err.msg)
             })
-            message.error(err.msg)
-        })
-
+        }
     }
 
     saveFn() {
@@ -70,12 +71,28 @@ export default class  extends React.Component {
             name: this.state.name,
             subtitle: this.state.subtitle,
             detail: this.state.detail,
-            id: this.state.productId,
             subImages: this._getImagesString(this.state.subImages),
             status: this.state.status,
         }
+        let productCheckResult = _product.checkProduct(data);
         console.log(data)
-        _product.saveProduct(data).then(res => message.error(res.data), err => message.error(err.data))
+
+        if (this.state.productId) {
+            product.id = this.state.productId;
+        }
+        // 表单验证成功
+        if (productCheckResult.status) {
+            _product.saveProduct(data).then(res => {
+                message.success(res)
+                this.props.history.push('/product/index');
+            }, err => message.error(err))
+        }
+        // 表单验证失败
+        else {
+            message.error(productCheckResult.msg);
+        }
+
+
     }
 
     _getImagesString(arr) {
@@ -92,7 +109,8 @@ export default class  extends React.Component {
 
     onSelectChange(value, option) {
         this.setState({
-            selectValue: value
+            selectValue: value,
+            categoryId:option.props.id
         })
         this.getCategoryInfo(option.props.id)
     }
@@ -190,10 +208,8 @@ export default class  extends React.Component {
                             }}>
                         {selectSubOptions.map((item, index) => {
                             return <Option key={`sub${index}`} value={item.name} id={item.id}>{item.name}</Option>
-
                         })}
                     </Select>
-
 
                     <h3>商品价格</h3>
                     <Input size="large" addonAfter='元' value={price} name='price' placeholder="please input"
@@ -219,9 +235,10 @@ export default class  extends React.Component {
 
                     <div className='product-detail'>
                         <h3>商品详情</h3>
-                        <BraftEditor {...editorProps} onHTMLChange={::this.handleHTMLChange}
-                                     ref={instance => this.editorInstance = instance}
-                        />
+                        <div className='editor'><BraftEditor {...editorProps} onHTMLChange={::this.handleHTMLChange}
+                                                             ref={instance => this.editorInstance = instance}
+                        /></div>
+
                     </div>
 
                 </Card>

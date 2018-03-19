@@ -42,7 +42,7 @@ export default class  extends React.Component {
             loading: true
         })
 
-        _order.getOrderList(this.state.pageNum).then(res => {
+        _order.getOrderList({pageNum:this.state.pageNum}).then(res => {
             this.setState({
                 data: res.list,
                 loading: false,

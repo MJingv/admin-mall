@@ -142,6 +142,10 @@ export default class  extends React.Component {
                            }}
                     />
                     <Button size='large' type="primary" className='search-button' onClick={::this.searchFn}>查询</Button>
+                    <Link to={`/product/save`}>
+                        <Button size='large' className='search-button'>新增商品</Button>
+                    </Link>
+
                 </div>
                 <Table columns={columns} dataSource={this.state.data} pagination={pagination}
                        loading={this.state.loading}/>

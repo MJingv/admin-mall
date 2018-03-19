@@ -1,6 +1,7 @@
 import React from 'react'
 import Product from 'api/product.jsx'
 import {Table, message, Card, Badge, Divider} from 'antd';
+import './index.scss'
 
 const _product = new Product()
 
@@ -88,7 +89,8 @@ export default class  extends React.Component {
                     <Table columns={columns} dataSource={this.state.data} pagination={false}
                            loading={this.state.loading}/>
                     <div className='product-detail'>
-                        <h3>商品详情</h3>
+
+
                         <pre>{this.state.data.length === 0 ? '暂无数据' : this.state.data[0].detail}</pre>
                     </div>
 
