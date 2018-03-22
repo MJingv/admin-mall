@@ -103,7 +103,7 @@ module.exports = {
                 changeOrigin: true,
 
             }
-        }
+        },
         compress: true,
     }
 };
