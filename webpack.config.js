@@ -104,7 +104,7 @@ module.exports = {
 
             }
         }
-        // compress: true,
+        compress: true,
     }
 };
 
