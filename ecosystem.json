@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "mall",
-            "script": "./node_modules/.bin/webpack-dev-server",
+            "script": "node_modules/.bin/webpack-dev-server",
             "env": {
                 "COMMON_VARIABLE": "true"
             },
