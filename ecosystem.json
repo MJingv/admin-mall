@@ -1,8 +1,8 @@
 {
     "apps": [
         {
-            "name": "admin-mall",
-            "script": "./src/app.js",
+            "name": "mall",
+            "script": "./node_modules/.bin/webpack-dev-server",
             "env": {
                 "COMMON_VARIABLE": "true"
             },
