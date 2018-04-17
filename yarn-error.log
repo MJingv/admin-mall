@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add axios
+  /usr/local/bin/node /usr/local/bin/yarn start
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -55,11 +55,15 @@ npm manifest:
       },
       "dependencies": {
           "antd": "^3.2.3",
+          "axios": "^0.18.0",
+          "braft-editor": "^1.8.0",
           "font-awesome": "^4.7.0",
-          "prop-types": "15.6.0",
+          "prop-types": "^15.6.1",
+          "qs": "^6.5.1",
           "rc-pagination": "1.15.1",
           "react": "16.2.0",
           "react-dom": "16.2.0",
+          "react-fileupload": "^2.4.0",
           "react-router-dom": "4.2.2",
           "simditor": "^2.3.6"
       }
@@ -412,6 +416,13 @@ Lockfile:
   aws4@^1.2.1, aws4@^1.6.0:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
+  
+  axios@^0.18.0:
+    version "0.18.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+    dependencies:
+      follow-redirects "^1.3.0"
+      is-buffer "^1.1.5"
   
   babel-code-frame@^6.26.0:
     version "6.26.0"
@@ -1261,6 +1272,14 @@ Lockfile:
       snapdragon-node "^2.0.1"
       split-string "^3.0.2"
       to-regex "^3.0.1"
+  
+  braft-editor@^1.8.0:
+    version "1.8.0"
+    resolved "https://registry.yarnpkg.com/braft-editor/-/braft-editor-1.8.0.tgz#3f55b2e1194482d35b31c7520e4b019bb898d871"
+    dependencies:
+      draft-convert "^2.0.0"
+      draft-js "^0.10.3"
+      draftjs-utils "^0.8.7"
   
   brorand@^1.0.1:
     version "1.1.0"
@@ -2123,13 +2142,24 @@ Lockfile:
       dom-serializer "0"
       domelementtype "1"
   
-  draft-js@^0.10.0, draft-js@~0.10.0:
+  draft-convert@^2.0.0:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/draft-convert/-/draft-convert-2.0.1.tgz#dfaa812b489fa87b38a54e16d04523eab63564d9"
+    dependencies:
+      immutable "~3.7.4"
+      invariant "^2.2.1"
+  
+  draft-js@^0.10.0, draft-js@^0.10.3, draft-js@~0.10.0:
     version "0.10.5"
     resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.5.tgz#bfa9beb018fe0533dbb08d6675c371a6b08fa742"
     dependencies:
       fbjs "^0.8.15"
       immutable "~3.7.4"
       object-assign "^4.1.0"
+  
+  draftjs-utils@^0.8.7:
+    version "0.8.8"
+    resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.8.tgz#5835daed95f59d3ee1f96fdcbbb9809772c86490"
   
   ecc-jsbn@~0.1.1:
     version "0.1.1"
@@ -2592,6 +2622,12 @@ Lockfile:
   flatten@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
+  
+  follow-redirects@^1.3.0:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.4.1.tgz#d8120f4518190f55aac65bb6fc7b85fcd666d6aa"
+    dependencies:
+      debug "^3.1.0"
   
   font-awesome@^4.7.0:
     version "4.7.0"
@@ -4802,15 +4838,7 @@ Lockfile:
     dependencies:
       asap "~2.0.3"
   
-  prop-types@15.6.0:
-    version "15.6.0"
-    resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
-    dependencies:
-      fbjs "^0.8.16"
-      loose-envify "^1.3.1"
-      object-assign "^4.1.1"
-  
-  prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
+  prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0, prop-types@^15.6.1:
     version "15.6.1"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
     dependencies:
@@ -4855,7 +4883,7 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   
-  qs@6.5.1, qs@~6.5.1:
+  qs@6.5.1, qs@^6.5.1, qs@~6.5.1:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   
@@ -5252,6 +5280,12 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
+  react-fileupload@^2.4.0:
+    version "2.4.0"
+    resolved "https://registry.yarnpkg.com/react-fileupload/-/react-fileupload-2.4.0.tgz#766e8ae6379a6e23651c790443e7716eed94ae68"
+    dependencies:
+      react "^15.0.2"
+  
   react-lazy-load@^3.0.12:
     version "3.0.13"
     resolved "https://registry.yarnpkg.com/react-lazy-load/-/react-lazy-load-3.0.13.tgz#3b0a92d336d43d3f0d73cbe6f35b17050b08b824"
@@ -5304,6 +5338,16 @@ Lockfile:
       loose-envify "^1.1.0"
       object-assign "^4.1.1"
       prop-types "^15.6.0"
+  
+  react@^15.0.2:
+    version "15.6.2"
+    resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
+    dependencies:
+      create-react-class "^15.6.0"
+      fbjs "^0.8.9"
+      loose-envify "^1.1.0"
+      object-assign "^4.1.0"
+      prop-types "^15.5.10"
   
   read-pkg-up@^1.0.1:
     version "1.0.1"
@@ -6762,8 +6806,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz: ETIMEDOUT
-      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:133094:19)
-      at ontimeout (timers.js:475:11)
-      at tryOnTimeout (timers.js:310:5)
-      at Timer.listOnTimeout (timers.js:270:5)
+  Error: Command "start" not found.
+      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:87307:17
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (/usr/local/lib/node_modules/yarn/lib/cli.js:23451:28)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:95:12
+      at runCommand (/usr/local/lib/node_modules/yarn/lib/cli.js:87312:22)
+      at Object.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:87412:14)

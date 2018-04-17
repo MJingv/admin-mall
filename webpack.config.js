@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/app.js',
-        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : 'http://mall.mjehol.cn/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : 'http://www.mjehol.cn/dist/',
     },
     resolve: {
         alias: {
@@ -103,7 +103,6 @@ module.exports = {
             '/user/logout.do': {
                 target: 'http://admintest.happymmall.com',
                 changeOrigin: true,
-
             }
         },
         compress: true,
