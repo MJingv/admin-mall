@@ -26,6 +26,9 @@ export default class  extends React.Component {
             loading: true
         })
         _order.searchOrder(this.state.orderNo).then((res) => {
+            res.list.map((item, index) => {
+                item.key = index
+            })
             this.setState({
                 data: res.list,
                 loading: false,
@@ -33,6 +36,10 @@ export default class  extends React.Component {
             })
         }, (err) => {
             message.error(err.msg)
+            this.setState({
+                loading: false,
+            })
+
         })
     }
 
@@ -41,7 +48,10 @@ export default class  extends React.Component {
             loading: true
         })
 
-        _order.getOrderList({pageNum:this.state.pageNum}).then(res => {
+        _order.getOrderList({pageNum: this.state.pageNum}).then(res => {
+            res.list.map((item, index) => {
+                item.key = index
+            })
             this.setState({
                 data: res.list,
                 loading: false,
@@ -80,7 +90,7 @@ export default class  extends React.Component {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
-            render(text,record,index) {
+            render(text, record, index) {
                 return <Link to={`/order/detail/${record.orderNo}`}>详情</Link>
             }
 

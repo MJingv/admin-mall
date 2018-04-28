@@ -29,6 +29,11 @@ export default class  extends React.Component {
             loading: true
         })
         _product.searchProduct({[this.state.searchWay]: this.state.searchValue}).then((res) => {
+
+            res.list.map(item => {
+                item.key = item.id
+            })
+
             this.setState({
                 data: res.list,
                 loading: false,
@@ -44,6 +49,10 @@ export default class  extends React.Component {
             loading: true
         })
         _product.getProductList(this.state.pageNum).then(res => {
+            res.list.map(item => {
+                item.key = item.id
+            })
+
             this.setState({
                 data: res.list,
                 loading: false,

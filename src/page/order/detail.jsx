@@ -25,6 +25,9 @@ export default class  extends React.Component {
             loading: true,
         })
         _order.getOrderDetail(this.state.orderNo).then(res => {
+            res.orderItemVoList.map((item, index) => {
+                item.key = index
+            })
             this.setState({
                 imageHost: res.imageHost,
                 data: res,

@@ -8,6 +8,7 @@ const _product = new Product()
 export default class  extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             productId: this.props.match.params.productId,
             data: [],
@@ -25,6 +26,7 @@ export default class  extends React.Component {
             loading: true,
         })
         _product.getProductDetail(this.state.productId).then(res => {
+            res.key = res.id
             this.state.data.push(res);
             this.setState({
                 imageHost: res.imageHost,

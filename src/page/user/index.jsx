@@ -23,6 +23,9 @@ export default class  extends React.Component {
             loading: true,
         })
         _user.getUserList(this.state.pageNum).then(res => {
+            res.list.map((item, index) => {
+                item.key = index
+            })
             this.setState({
                 data: res.list,
                 loading: false,
