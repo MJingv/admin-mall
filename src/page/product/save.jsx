@@ -78,7 +78,7 @@ export default class  extends React.Component {
         console.log(data)
 
         if (this.state.productId) {
-            product.id = this.state.productId;
+            data.id = this.state.productId;
         }
         // 表单验证成功
         if (productCheckResult.status) {
@@ -110,7 +110,7 @@ export default class  extends React.Component {
     onSelectChange(value, option) {
         this.setState({
             selectValue: value,
-            categoryId:option.props.id
+            categoryId: option.props.id
         })
         this.getCategoryInfo(option.props.id)
     }
