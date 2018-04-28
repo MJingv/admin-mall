@@ -8,7 +8,6 @@ const _product = new Product()
 export default class  extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             productId: this.props.match.params.productId,
             data: [],
