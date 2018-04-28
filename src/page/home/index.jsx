@@ -21,7 +21,6 @@ export default class  extends React.Component {
 
     initData() {
         _statistic.getHomeCount().then((res) => {
-            console.log(res)
             this.setState({
                 orderCount: res.orderCount,
                 productCount: res.productCount,

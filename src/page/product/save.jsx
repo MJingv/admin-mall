@@ -75,7 +75,6 @@ export default class  extends React.Component {
             status: this.state.status,
         }
         let productCheckResult = _product.checkProduct(data);
-        console.log(data)
 
         if (this.state.productId) {
             data.id = this.state.productId;

@@ -31,7 +31,6 @@ export default class  extends React.Component {
                 loading: false,
                 orderTotal: res.total
             })
-            console.log(res)
         }, (err) => {
             message.error(err.msg)
         })

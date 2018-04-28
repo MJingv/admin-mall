@@ -23,7 +23,6 @@ export default class  extends React.Component {
             loading: true,
         })
         _user.getUserList(this.state.pageNum).then(res => {
-            console.log(res.list)
             this.setState({
                 data: res.list,
                 loading: false,
