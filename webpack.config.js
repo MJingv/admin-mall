@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/app.js',
-        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.mall.mjehol.cn/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.mjehol.cn/adimin-mall/dist/',
     },
     resolve: {
         alias: {
