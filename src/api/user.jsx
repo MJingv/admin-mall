@@ -52,7 +52,7 @@ export default class User {
 
     verifyUserName(userInfo) {
         return _mm.request({
-            method: 'post',
+            method: 'get',
             url: '/user/check_valid.do',
             data: userInfo
         });

@@ -12,9 +12,9 @@ import Product from 'page/product/router.jsx'
 import UserList from 'page/user/index.jsx'
 import OrderList from 'page/order/index.jsx'
 import OrderDetail from 'page/order/detail.jsx'
+import Register from 'page/register/index.jsx'
 
 import Error from 'page/error/index.jsx'
-import Register from 'page/user/register.jsx'
 
 class App extends React.Component {
 
@@ -28,7 +28,6 @@ class App extends React.Component {
                     <Route path='/order/detail/:orderNumber' component={OrderDetail}/>
                     <Redirect exact from='/order' to="/order/index"/>
                     <Route path='/user' component={UserList}/>
-                    {/*<Route path='/user/register' component={Register}/>*/}
                     <Route component={Error}/>
                 </Switch>
             </Layout>
@@ -38,6 +37,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path='/login' component={Login}/>
+                    <Route path='/register' component={Register}/>
                     {/*path='/'滞后*/}
                     <Route path='/' render={() => LayoutRouter}>
                     </Route>
